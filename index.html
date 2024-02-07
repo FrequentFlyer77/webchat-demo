@@ -3,7 +3,7 @@
     <head>
         <title>WebSocket Chat</title>
         <script>
-            let ws = new WebSocket("ws://localhost:3001");
+            let ws = new WebSocket("ws://" + location.host.toString().slice(0, -1) + "1");
 
             ws.onmessage = (msg) => {
                 var msg2 = msg.data;
