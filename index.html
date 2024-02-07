@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>WebSocket Chat</title>
+        <script>
+            let ws = new WebSocket("ws://localhost:3001");
+
+            ws.onmessage = (msg) => {
+                var msg2 = msg.data;
+                document.getElementById("msgs").innerHTML += (msg2 + "<br/>")
+                console.log(msg2)
+            }
+
+            document.onkeyup = (e) => {
+                if (e.keyCode==13 && document.getElementById("msg").value != "") {
+                    if (ws.OPEN) {
+                        ws.send(document.getElementById("msg").value);
+                        document.getElementById("msg").value = "";
+                    }
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <input type="text" id="msg">
+        <p id="msgs">
+            This is the start of the group chat.<br/>
+        </p>
+    </body>
+</html>
